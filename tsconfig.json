@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "useUnknownInCatchVariables": false,
+    "resolveJsonModule": true,
+    "module": "commonjs",
+    "noImplicitReturns": true,
+    "noUnusedLocals": false,
+    "outDir": "lib",
+    "sourceMap": true,
+    "strict": true,
+    "target": "es2017",
+    "noImplicitAny": false,
+    "esModuleInterop": true
+  },
+  "compileOnSave": true,
+  "include": ["src"]
+}
