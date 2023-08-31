@@ -4,6 +4,7 @@ import ExhibitorTemplate from '../ts/templates/exhibitor';
 import VisitorTemplate from '../ts/templates/visitor';
 import { fetchData } from '../ts/googleSheetService';
 import { Business, Exhibitor, Visitor } from '../ts/types';
+import table from '../ts/templates/table';
 
 const router = Router();
 
@@ -13,7 +14,22 @@ router.get('/business', async (_, res) => {
       '108sf5dRF178MMOZ4hz9CFqG3zO6Wln_ZA-b4DFJGOeA',
       'Form Responses',
     );
-    res.send(data);
+
+    res.setHeader('Content-Type', 'text/html');
+    res.send(
+      table<Business>(
+        [
+          'Submission ID',
+          'Submission Date',
+          'First Name',
+          'Last Name',
+          'Company',
+        ],
+        data,
+        'business',
+        'Business Registrations',
+      ),
+    );
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
@@ -25,7 +41,22 @@ router.get('/exhibitors', async (_, res) => {
       '1iDfQLJgAOscULs09-Ez5pJ7QPZaLgyYgw_OtbpaF9w4',
       'Form Responses',
     );
-    res.send(data);
+
+    res.setHeader('Content-Type', 'text/html');
+    res.send(
+      table<Exhibitor>(
+        [
+          'Submission ID',
+          'Submission Date',
+          'First Name',
+          'Last Name',
+          'Company Name',
+        ],
+        data,
+        'business',
+        'Business Registrations',
+      ),
+    );
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
@@ -37,7 +68,16 @@ router.get('/visitors', async (_, res) => {
       '1hAfMYOeabSJ1MXJl1U0Q2XgGrI1R2n7BVi_PjY_xwWE',
       'Form Responses',
     );
-    res.send(data);
+
+    res.setHeader('Content-Type', 'text/html');
+    res.send(
+      table<Visitor>(
+        ['Submission ID', 'Submission Date', 'Name', 'Company Name'],
+        data,
+        'business',
+        'Business Registrations',
+      ),
+    );
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
