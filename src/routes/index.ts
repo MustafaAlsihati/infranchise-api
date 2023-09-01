@@ -146,7 +146,7 @@ router.get('/cards/exhibitor/:id', async (req, res) => {
     exhibitor['First Name'] = (exhibitor['First Name'] ?? '').trim();
     exhibitor['Last Name'] = (exhibitor['Last Name'] ?? '').trim();
     exhibitor['Company Name'] = (exhibitor['Company Name'] ?? '').trim();
-    exhibitor['Brand Name'] = (exhibitor['Brand Name'] ?? '').trim();
+    exhibitor['Position'] = (exhibitor['Position'] ?? '').trim();
     exhibitor['Email'] = (exhibitor['Email'] ?? '').trim();
 
     const username = exhibitor['First Name'] + ' ' + exhibitor['Last Name'];
@@ -155,7 +155,7 @@ router.get('/cards/exhibitor/:id', async (req, res) => {
     html = html.replace('{{TITLE}}', username);
     html = html.replace('{{NAME}}', username);
     html = html.replace('{{COMPANY_NAME}}', exhibitor['Company Name']);
-    html = html.replace('{{POSITION}}', exhibitor['Brand Name']);
+    html = html.replace('{{POSITION}}', exhibitor['Position']);
     html = html.replace('{{EMAIL}}', exhibitor['Email']);
 
     res.setHeader('Content-Type', 'text/html');
