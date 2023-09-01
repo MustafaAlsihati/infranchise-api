@@ -27,8 +27,8 @@ export default `
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        height: 150mm;
-        width: 105mm;
+        height: 120mm;
+        width: 90mm;
       "
     >
       <div

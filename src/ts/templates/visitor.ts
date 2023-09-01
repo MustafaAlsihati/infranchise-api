@@ -27,8 +27,8 @@ export default `
         align-items: center;
         justify-content: center;
         flex: 1;
-        height: 150mm;
-        width: 105mm;
+        height: 120mm;
+        width: 90mm;
       "
     >
       <div
@@ -42,7 +42,7 @@ export default `
           padding: 0.25rem 0;
         "
       >
-        <img
+        <!-- <img
           src="https://www.jotform.com/uploads/3dimensionsme/form_files/logo.64eb79482472c6.82188983.png"
           alt="logo"
           width="25%"
@@ -53,7 +53,7 @@ export default `
           alt="event"
           width="60%"
           height="auto"
-        />
+        /> -->
       </div>
       <div
         style="
@@ -94,7 +94,7 @@ export default `
           padding: 0.25rem 0;
         "
       >
-        <img
+        <!-- <img
           src="https://www.jotform.com/uploads/3dimensionsme/form_files/visitors.64eb7e6e22edd2.67592690.png"
           alt="exhibitor"
           width="45%"
@@ -105,7 +105,7 @@ export default `
           alt="date"
           width="45%"
           height="auto"
-        />
+        /> -->
       </div>
     </div>
 
@@ -134,6 +134,13 @@ export default `
     const width = document.getElementById('width');
     const height = document.getElementById('height');
     const content = document.getElementById('content');
+
+    if (width) {
+      width.value = 90;
+    }
+    if (height) {
+      height.value = 120;
+    }
 
     width.addEventListener('change', e => {
       content.style.width = e.target.value + 'mm';
