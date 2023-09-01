@@ -1,6 +1,6 @@
 export default function <T>(
-  headers: (keyof T)[],
   rows: T[],
+  headers: (keyof T)[],
   card_type: 'visitor' | 'exhibitor' | 'business',
   title: string,
 ) {
@@ -15,18 +15,16 @@ export default function <T>(
     </head>
     <body>
       <table>
-        <thead>
-          <tr>
-            ${headers.forEach(header => {
+        <tr>
+            ${headers.map(header => {
               return `<th>${String(header)}</th>`;
             })}
-          </tr>
           <th>Card</th>
-        </thead>
-        <tbody>
-          ${rows.forEach(row => {
+        </tr>
+        <tr>
+          ${rows.map(row => {
             let _row = '<tr>';
-            headers.forEach(column => {
+            headers.map(column => {
               _row += `<td>${row[column]}</td>`;
             });
             _row += `<td>
@@ -35,7 +33,7 @@ export default function <T>(
             </tr>`;
             return _row;
           })}
-        </tbody>
+        </tr>
       </table>
     </body>
   </html>

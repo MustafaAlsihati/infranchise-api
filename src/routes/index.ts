@@ -5,8 +5,18 @@ import VisitorTemplate from '../ts/templates/visitor';
 import { fetchData } from '../ts/googleSheetService';
 import { Business, Exhibitor, Visitor } from '../ts/types';
 import table from '../ts/templates/table';
+import home from '../ts/templates/home';
 
 const router = Router();
+
+router.get('/', (_, res) => {
+  try {
+    res.setHeader('Content-Type', 'text/html');
+    res.send(home);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
 
 router.get('/business', async (_, res) => {
   try {
@@ -15,21 +25,22 @@ router.get('/business', async (_, res) => {
       'Form Responses',
     );
 
-    res.setHeader('Content-Type', 'text/html');
-    res.send(
-      table<Business>(
-        [
-          'Submission ID',
-          'Submission Date',
-          'First Name',
-          'Last Name',
-          'Company',
-        ],
-        data,
-        'business',
-        'Business Registrations',
-      ),
+    const html = table<Business>(
+      data,
+      [
+        'Submission ID',
+        'Submission Date',
+        'First Name',
+        'Last Name',
+        'Company',
+        'Email',
+      ],
+      'business',
+      'Business Registrations',
     );
+
+    res.setHeader('Content-Type', 'text/html');
+    res.send(html);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
@@ -42,21 +53,22 @@ router.get('/exhibitors', async (_, res) => {
       'Form Responses',
     );
 
-    res.setHeader('Content-Type', 'text/html');
-    res.send(
-      table<Exhibitor>(
-        [
-          'Submission ID',
-          'Submission Date',
-          'First Name',
-          'Last Name',
-          'Company Name',
-        ],
-        data,
-        'business',
-        'Business Registrations',
-      ),
+    const html = table<Exhibitor>(
+      data,
+      [
+        'Submission ID',
+        'Submission Date',
+        'First Name',
+        'Last Name',
+        'Company Name',
+        'Email',
+      ],
+      'business',
+      'Business Registrations',
     );
+
+    res.setHeader('Content-Type', 'text/html');
+    res.send(html);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
@@ -69,15 +81,15 @@ router.get('/visitors', async (_, res) => {
       'Form Responses',
     );
 
-    res.setHeader('Content-Type', 'text/html');
-    res.send(
-      table<Visitor>(
-        ['Submission ID', 'Submission Date', 'Name', 'Company Name'],
-        data,
-        'business',
-        'Business Registrations',
-      ),
+    const html = table<Visitor>(
+      data,
+      ['Submission ID', 'Submission Date', 'Name', 'Company Name', 'Email'],
+      'business',
+      'Business Registrations',
     );
+
+    res.setHeader('Content-Type', 'text/html');
+    res.send(html);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
