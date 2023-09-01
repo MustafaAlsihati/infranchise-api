@@ -11,6 +11,11 @@ export default `
         margin: 0;
         padding: 0;
       }
+      @media print {
+        .noprint {
+          visibility: hidden;
+        }
+      }
     </style>
   </head>
   <body>
@@ -105,6 +110,7 @@ export default `
     </div>
 
     <div
+      class="noprint"
       style="
         position: relative;
         margin: 60px auto 0 auto;

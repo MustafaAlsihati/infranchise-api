@@ -1,6 +1,5 @@
 export default `
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -11,6 +10,11 @@ export default `
       p {
         margin: 0;
         padding: 0;
+      }
+      @media print {
+        .noprint {
+          visibility: hidden;
+        }
       }
     </style>
   </head>
@@ -106,11 +110,12 @@ export default `
     </div>
 
     <div
+      class="noprint"
       style="
         position: relative;
         margin: 60px auto 0 auto;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
       "
     >
       <div style="position: relative; display: flex; flex-direction: column">

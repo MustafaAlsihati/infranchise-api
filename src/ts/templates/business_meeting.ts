@@ -11,6 +11,11 @@ export default `
         margin: 0;
         padding: 0;
       }
+      @media print {
+        .noprint {
+          visibility: hidden;
+        }
+      }
     </style>
   </head>
   <body>
@@ -111,7 +116,15 @@ export default `
         flex-direction: row;
       "
     >
-      <div style="position: relative; display: flex; flex-direction: column">
+      <div
+        class="noprint"
+        style="
+          position: relative;
+          margin: 60px auto 0 auto;
+          display: flex;
+          flex-direction: column;
+        "
+      >
         <span>العرض</span>
         <input id="width" type="number" />
       </div>

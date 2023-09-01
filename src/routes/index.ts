@@ -107,11 +107,11 @@ router.get('/cards/business/:id', async (req, res) => {
       throw new Error('Business not found');
     }
 
-    business['First Name'] = business['First Name'].trim();
-    business['Last Name'] = business['Last Name'].trim();
-    business['Company'] = business['Company'].trim();
-    business['Job Title'] = business['Job Title'].trim();
-    business['Email'] = business['Email'].trim();
+    business['First Name'] = (business['First Name'] ?? '').trim();
+    business['Last Name'] = (business['Last Name'] ?? '').trim();
+    business['Company'] = (business['Company'] ?? '').trim();
+    business['Job Title'] = (business['Job Title'] ?? '').trim();
+    business['Email'] = (business['Email'] ?? '').trim();
 
     const username = business['First Name'] + ' ' + business['Last Name'];
 
@@ -143,11 +143,11 @@ router.get('/cards/exhibitor/:id', async (req, res) => {
       throw new Error('Exhibitor not found');
     }
 
-    exhibitor['First Name'] = exhibitor['First Name'].trim();
-    exhibitor['Last Name'] = exhibitor['Last Name'].trim();
-    exhibitor['Company Name'] = exhibitor['Company Name'].trim();
-    exhibitor['Brand Name'] = exhibitor['Brand Name'].trim();
-    exhibitor['Email'] = exhibitor['Email'].trim();
+    exhibitor['First Name'] = (exhibitor['First Name'] ?? '').trim();
+    exhibitor['Last Name'] = (exhibitor['Last Name'] ?? '').trim();
+    exhibitor['Company Name'] = (exhibitor['Company Name'] ?? '').trim();
+    exhibitor['Brand Name'] = (exhibitor['Brand Name'] ?? '').trim();
+    exhibitor['Email'] = (exhibitor['Email'] ?? '').trim();
 
     const username = exhibitor['First Name'] + ' ' + exhibitor['Last Name'];
 
@@ -176,10 +176,10 @@ router.get('/cards/visitor/:id', async (req, res) => {
       throw new Error('Visitor not found');
     }
 
-    visitor['Name'] = visitor['Name'].trim();
-    visitor['Company Name'] = visitor['Company Name'].trim();
-    visitor['Occupation'] = visitor['Occupation'].trim();
-    visitor['Email'] = visitor['Email'].trim();
+    visitor['Name'] = (visitor['Name'] ?? '').trim();
+    visitor['Company Name'] = (visitor['Company Name'] ?? '').trim();
+    visitor['Occupation'] = (visitor['Occupation'] ?? '').trim();
+    visitor['Email'] = (visitor['Email'] ?? '').trim();
 
     let html = VisitorTemplate;
     html = html.replace('{{TITLE}}', visitor['Name']);
