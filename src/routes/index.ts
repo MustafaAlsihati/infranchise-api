@@ -49,7 +49,8 @@ router.get('/business', async (_, res) => {
 router.get('/exhibitors', async (_, res) => {
   try {
     const data = await fetchData<Exhibitor>(
-      '1iDfQLJgAOscULs09-Ez5pJ7QPZaLgyYgw_OtbpaF9w4',
+      // '1iDfQLJgAOscULs09-Ez5pJ7QPZaLgyYgw_OtbpaF9w4',
+      '1e9388MWlXTXE5ws1NrUaJX8IDzdR8uy_PvCWzLMSUn0',
       'Form Responses',
     );
 
@@ -63,8 +64,8 @@ router.get('/exhibitors', async (_, res) => {
         'Company Name',
         'Email',
       ],
-      'business',
-      'Business Registrations',
+      'exhibitor',
+      'Exhibitors Registrations',
     );
 
     res.setHeader('Content-Type', 'text/html');
@@ -84,8 +85,8 @@ router.get('/visitors', async (_, res) => {
     const html = table<Visitor>(
       data,
       ['Submission ID', 'Submission Date', 'Name', 'Company Name', 'Email'],
-      'business',
-      'Business Registrations',
+      'visitor',
+      'Visitors Registrations',
     );
 
     res.setHeader('Content-Type', 'text/html');
@@ -131,7 +132,8 @@ router.get('/cards/business/:id', async (req, res) => {
 router.get('/cards/exhibitor/:id', async (req, res) => {
   try {
     const data = await fetchData<Exhibitor>(
-      '1iDfQLJgAOscULs09-Ez5pJ7QPZaLgyYgw_OtbpaF9w4',
+      // '1iDfQLJgAOscULs09-Ez5pJ7QPZaLgyYgw_OtbpaF9w4',
+      '1e9388MWlXTXE5ws1NrUaJX8IDzdR8uy_PvCWzLMSUn0',
       'Form Responses',
     );
     const exhibitor = data.find(
