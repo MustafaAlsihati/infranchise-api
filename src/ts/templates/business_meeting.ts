@@ -27,7 +27,7 @@ export default `
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        height: 120mm;
+        height: 110mm;
         width: 90mm;
       "
     >

@@ -27,7 +27,7 @@ export default `
         align-items: center;
         justify-content: center;
         flex: 1;
-        height: 120mm;
+        height: 110mm;
         width: 90mm;
       "
     >
