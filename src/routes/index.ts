@@ -1,7 +1,5 @@
 import { Router } from 'express';
-import BusinessMeetingTemplate from '../ts/templates/business_meeting';
-import ExhibitorTemplate from '../ts/templates/exhibitor';
-import VisitorTemplate from '../ts/templates/visitor';
+import CardTemplate from '../ts/templates/card-template';
 import { fetchData } from '../ts/googleSheetService';
 import { Business, Exhibitor, Visitor } from '../ts/types';
 import table from '../ts/templates/table';
@@ -115,7 +113,7 @@ router.get('/cards/business/:id', async (req, res) => {
 
     const username = business['First Name'] + ' ' + business['Last Name'];
 
-    let html = BusinessMeetingTemplate;
+    let html = CardTemplate;
     html = html.replace('{{TITLE}}', username);
     html = html.replace('{{NAME}}', username);
     html = html.replace('{{COMPANY_NAME}}', business['Company']);
@@ -151,7 +149,7 @@ router.get('/cards/exhibitor/:id', async (req, res) => {
 
     const username = exhibitor['First Name'] + ' ' + exhibitor['Last Name'];
 
-    let html = ExhibitorTemplate;
+    let html = CardTemplate;
     html = html.replace('{{TITLE}}', username);
     html = html.replace('{{NAME}}', username);
     html = html.replace('{{COMPANY_NAME}}', exhibitor['Company Name']);
@@ -171,7 +169,7 @@ router.get('/cards/visitor/:id', async (req, res) => {
       '1hAfMYOeabSJ1MXJl1U0Q2XgGrI1R2n7BVi_PjY_xwWE',
       'Form Responses',
     );
-    const visitor = data.find(item => item['Unique ID'] === req.params.id);
+    const visitor = data.find(item => item['Submission ID'] === req.params.id);
     if (!visitor) {
       throw new Error('Visitor not found');
     }
@@ -181,7 +179,7 @@ router.get('/cards/visitor/:id', async (req, res) => {
     visitor['Occupation'] = (visitor['Occupation'] ?? '').trim();
     visitor['Email'] = (visitor['Email'] ?? '').trim();
 
-    let html = VisitorTemplate;
+    let html = CardTemplate;
     html = html.replace('{{TITLE}}', visitor['Name']);
     html = html.replace('{{NAME}}', visitor['Name']);
     html = html.replace('{{COMPANY_NAME}}', visitor['Company Name']);
@@ -193,6 +191,10 @@ router.get('/cards/visitor/:id', async (req, res) => {
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
+});
+
+router.get('/keep-alive', (_, res) => {
+  res.status(200).json({ message: 'I am alive' });
 });
 
 export default router;

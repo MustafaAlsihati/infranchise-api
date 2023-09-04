@@ -1,11 +1,7 @@
-/**
- ** Setup DotEnv
- */
 import DotEnv from 'dotenv';
 DotEnv.config();
-/**
- ** Setup Express App
- */
+import fetch from 'node-fetch';
+import cron from 'node-cron';
 import {
   default as express,
   Request as ExpressRequest,
@@ -54,4 +50,9 @@ app.listen(process.env.PORT || 5000, () => {
       `Server is running on http://localhost:${process.env.PORT || 5000}`,
     );
   }
+});
+
+// every 10 minutes
+cron.schedule('*/10 * * * *', async () => {
+  await fetch(`${process.env.API_URL!}/keep-alive`);
 });
