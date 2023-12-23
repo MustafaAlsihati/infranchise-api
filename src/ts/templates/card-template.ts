@@ -25,7 +25,6 @@ export default `
         text-decoration: none;
         font-size: 16px;
         cursor: pointer;
-        margin: 10px;
       }
     </style>
   </head>
@@ -137,10 +136,6 @@ export default `
       "
     >
       <div style="position: relative; display: flex; flex-direction: column">
-        <button class="print-btn" onclick="onPrint()">طباعة</button>
-      </div>
-
-      <div style="position: relative; display: flex; flex-direction: column">
         <span>العرض</span>
         <input id="width" type="number" />
       </div>
@@ -160,6 +155,9 @@ export default `
         flex-direction: column;
       "
     >
+      <div style="position: relative; display: flex; flex-direction: column">
+        <button class="print-btn" onclick="onPrint()">طباعة</button>
+      </div>
       <div style="position: relative; display: flex; flex-direction: column">
         <span>الإسم</span>
         <input id="name_input" type="text" />
