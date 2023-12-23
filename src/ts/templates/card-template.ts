@@ -16,6 +16,17 @@ export default `
           visibility: hidden;
         }
       }
+      .print-btn {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        cursor: pointer;
+        margin: 10px;
+      }
     </style>
   </head>
   <body>
@@ -126,6 +137,10 @@ export default `
       "
     >
       <div style="position: relative; display: flex; flex-direction: column">
+        <button class="print-btn" onclick="onPrint()">طباعة</button>
+      </div>
+
+      <div style="position: relative; display: flex; flex-direction: column">
         <span>العرض</span>
         <input id="width" type="number" />
       </div>
@@ -208,6 +223,10 @@ export default `
     email_input.addEventListener('change', e => {
       email.innerHTML = e.target.value;
     });
+
+    function onPrint() {
+      window.print();
+    }
   </script>
 </html>
 `;

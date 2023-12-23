@@ -16,6 +16,67 @@ router.get('/', (_, res) => {
   }
 });
 
+router.get('/people', async (_, res) => {
+  try {
+    const data = await fetchData<Business>(
+      '1qlZTWIZWvMaAPDO6afRl6N--FfR6hOq1TSzUYwDeO_g',
+      'Form Responses',
+    );
+
+    const html = table<Business>(
+      data,
+      [
+        'Submission Date',
+        'First Name',
+        'Last Name',
+        'City',
+        'Company',
+        'Email',
+      ],
+      'people',
+      'People Registrations',
+    );
+
+    res.setHeader('Content-Type', 'text/html');
+    res.send(html);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+router.get('/cards/people/:id', async (req, res) => {
+  try {
+    const data = await fetchData<Business>(
+      '1qlZTWIZWvMaAPDO6afRl6N--FfR6hOq1TSzUYwDeO_g',
+      'Form Responses',
+    );
+    const people = data.find(item => item['Company'] === req.params.id);
+    if (!people) {
+      throw new Error('people not found');
+    }
+
+    people['First Name'] = (people['First Name'] ?? '').trim();
+    people['Last Name'] = (people['Last Name'] ?? '').trim();
+    people['Company'] = (people['Company'] ?? '').trim();
+    people['City'] = (people['City'] ?? '').trim();
+    people['Email'] = (people['Email'] ?? '').trim();
+
+    const username = people['First Name'] + ' ' + people['Last Name'];
+
+    let html = CardTemplate;
+    html = html.replace('{{TITLE}}', username);
+    html = html.replace('{{NAME}}', username);
+    html = html.replace('{{COMPANY_NAME}}', people['Company']);
+    html = html.replace('{{POSITION}}', people['City']);
+    html = html.replace('{{EMAIL}}', people['Email']);
+
+    res.setHeader('Content-Type', 'text/html');
+    res.send(html);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
 router.get('/business', async (_, res) => {
   try {
     const data = await fetchData<Business>(

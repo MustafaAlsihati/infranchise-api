@@ -1,7 +1,7 @@
 export default function <T>(
   rows: T[],
   headers: (keyof T)[],
-  card_type: 'visitor' | 'exhibitor' | 'business',
+  card_type: 'visitor' | 'exhibitor' | 'business' | 'people',
   title: string,
 ) {
   return `
@@ -28,7 +28,7 @@ export default function <T>(
               _row += `<td>${row[column]}</td>`;
             });
             _row += `<td>
-                <a href="/cards/${card_type}/${row['Submission ID']}">Click To View Card</a>
+                <a href="/cards/${card_type}/${row['Company']}">Click To View Card</a>
               </td>
             </tr>`;
             return _row;

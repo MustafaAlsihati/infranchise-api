@@ -24,9 +24,10 @@ export default `
         justify-content: center;
       "
     >
-      <a href="/business">Business Meeting - البزنيس ميتنق</a>
-      <a href="/exhibitors" style="margin-top: 60px">Exhibitors - العارضين</a>
-      <a href="/visitors" style="margin-top: 60px">Visitors - الزوار</a>
+      <!-- <a href="/business">Business Meeting - البزنيس ميتنق</a>
+      <a href="/exhibitors" style="margin-top: 60px">Exhibitors - العارضين</a> -->
+      <!-- <a href="/visitors" style="margin-top: 60px">Visitors - الزوار</a> -->
+      <a href="/people" style="margin-top: 60px">Visitors - الزوار</a>
     </div>
   </body>
 </html>
